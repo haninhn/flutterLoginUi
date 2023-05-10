@@ -45,15 +45,40 @@ class _LoginPageState extends State<LoginPage> {
           buildBackgroundTopCircle(context),
           buildBackgroundBottomCircle(context),
           Container(
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+
             child: SingleChildScrollView(
               padding: const EdgeInsets.only(left: 16, right: 16, top: 50, bottom: 40),
               child: Column(
-                children: [
-                  Text("SIGN IN", style: TextStyle(
+                children:  [
+                  const Text("SIGN IN", style: TextStyle(
                     color:  Colors.white,
                     fontSize: 18,
-                    fontWeight:  FontWeight.bold
-                  ))
+                    fontWeight:  FontWeight.bold),
+                  ),
+                  const SizedBox(height: 24,),
+                  buildAvatarContainer()
+                  Container(
+                     height: 240,
+                     child: Column(
+                       children: [
+                         Container(
+                          child: Column(
+                            children: [
+                              Text("EMAIL ADDREESS", style: TextStyle(color: blueColor, fontSize: 12)),
+                              const SizedBox(height:5 ,)
+                              TextField(
+                                decoration: InputDecoration(
+
+                                ),
+                              ),
+                            ]
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -63,6 +88,8 @@ class _LoginPageState extends State<LoginPage> {
 
     );
   }
+
+
 
   Positioned buildBackgroundBottomCircle(BuildContext context) {
     return Positioned(
@@ -101,5 +128,41 @@ class _LoginPageState extends State<LoginPage> {
               ),
             )
         );
+  }
+
+  Container buildAvatarContainer() {
+    return Container(
+      margin: const EdgeInsets.only(top: 24),
+      width: 130,
+      height: 130,
+      decoration: BoxDecoration(
+          color: yellowColor,
+          borderRadius: BorderRadius.circular(65),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.2),
+              spreadRadius: 4,
+              blurRadius: 20,
+            )
+          ]
+      ),
+      child: Center(
+        child: Stack(
+            children: [
+              Positioned(
+                  left: 1.0,
+                  top: 3.0,
+                  child: Icon(
+                      Icons.person_outline,
+                      size: 60,
+                      color: Colors.black.withOpacity(.1))
+              ),
+              const Icon(
+                  Icons.person_outline,
+                  size: 60,
+                  color: Colors.white)
+            ]),
+      ),
+    );
   }
 }
